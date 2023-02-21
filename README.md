@@ -62,7 +62,7 @@ h.当前版本支持的动态计算参数如下：
     server.end-point-max-concurrency: 8
 
 
-部署和执行命令：   
+部署和执行菜单命令：   
 在tiup节点root用户/root/目录下，执行以下部署命令：   
 tar zxf  tidbdeploy-v1.x.x.tar   
 执行sh /root/tidbdeploy/scripts/00_tidb_deploy_text_menu.sh即可执行程序；   
