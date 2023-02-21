@@ -66,7 +66,7 @@ tar zxf  tidbdeploy-v1.x.x.tar
 
 
 5.版本说明   
-Current Release Version: 1.0.3   
+Current Release Version: 1.0.4   
 Script Editor: 马学涛   
-2023-02-17.   
+2023-02-21.   
 
