@@ -38,6 +38,26 @@ tidbinitvar.txt             #初始化数据参数变量命令清单  9.1 编辑
 #root/tidbdeploy/scripts 程序目录    
 00_tidb_deploy_text_menu.sh  #总菜单脚本    
 
+[root@CentOS76_VM ~]# tree  /root/tidbdeploy/   
+tidbdeploy/   
+├── conf                            #root/tidbdeploy/conf 配置文件目录    
+│   ├── iplist.txt                  #集群ip地址列表             1.7 编辑集群ip列表   
+│   ├── a_and_b_iplist.txt          #新老集群ip地址列表         6.5.1 编辑两个集群ip列表   
+│   ├── cluster_base_info.conf      #集群部署初始配置文件       1.1 编辑集群部署初始配置文件   
+│   ├── cluster_global.conf         #yaml全局和服务配置文件     6.1 编辑yaml头部(全局和服务配置)文件    
+│   ├── cluster_plan.conf           #集群拓扑规划文件           1.5 编辑集群拓扑规划文件   
+│   ├── cluster_plan.conf.example1  #集群拓扑规划模板1-最小配置  1.2 集群拓扑规划模板1-最小配置   
+│   ├── cluster_plan.conf.example2  #集群拓扑规划模板2-简单配置  1.3 集群拓扑规划模板2-简单配置   
+│   ├── cluster_plan.conf.example3  #集群拓扑规划模板3-详细配置  1.4 集群拓扑规划模板3-详细配置   
+│   └── tidbinitvar.txt             #初始化数据参数变量命令清单  9.1 编辑数据库变量参数文件   
+├── log                             #root/tidbdeploy/log  日志文件目录                      
+├── package                         #root/tidbdeploy/package 安装介质目录，需要server和toolkit同时下载   
+│   ├── tidb-community-server-v6.1.1-linux-amd64.tar.gz   
+│   ├── tidb-community-toolkit-v6.1.1-linux-amd64.tar.gz   
+└── scripts                         #root/tidbdeploy/scripts 程序目录    
+    ├── 00_tidb_deploy_text_menu.sh  #总菜单脚本   
+
+
 
 4.TiDB部署助手工具部署和使用注意说明   
 a.TiDB工具需要部署在tiup节点root用户的/root目录下；   
