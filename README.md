@@ -38,49 +38,6 @@ tidbdeploy/
 │   ├── tidb-community-toolkit-v6.1.1-linux-amd64.tar.gz
 └── scripts                         #root/tidbdeploy/scripts 程序目录 
     ├── 00_tidb_deploy_text_menu.sh  #总菜单脚本
-    ├── 01_01_check_root_ssh_mutual_trust.sh
-    ├── 01_01_set_root_ssh_mutual_trust.sh
-    ├── 01_06_01_create_newplanfile_from_planfile.sh
-    ├── 01_06_create_newplanfile_from_planfile_text_menu.sh
-    ├── 01_set_root_ssh_mutual_trust_text_menu.sh
-    ├── 02_01_set_os_optimal_parameters.sh
-    ├── 02_loop_set_os_optimal_parameters.sh
-    ├── 03_01_01_non_tidb_component_mount_data_disk.sh
-    ├── 03_01_non_tidb_component_mount_data_disk.sh
-    ├── 03_02_01_tidb_component_mount_data_disk.sh
-    ├── 03_02_tidb_component_mount_data_disk.sh
-    ├── 03_03_all_component_mount_data_disk.sh
-    ├── 03_mount_data_disk_text_menu.sh
-    ├── 04_02_loop_create_cluster_user.sh
-    ├── 04_03_01_loop_set_cluster_user_ssh_mutual_trust.sh
-    ├── 04_03_set_cluster_user_ssh_mutual_trust.sh
-    ├── 04_04_01_check_cluster_user_ssh.sh
-    ├── 04_04_check_cluster_user_ssh_mutual_trust.sh
-    ├── 04_create_cluster_user_and_set_mutual_trust_text_menu.sh
-    ├── 05_03_create_cluster_component_topology_file.sh
-    ├── 05_03_create_cluster_component_topology_file.sh.rawkv
-    ├── 05_03_create_cluster_component_topology_file.sh.xjxy
-    ├── 05_04_dynamic_parameters_calculate.sh
-    ├── 05_05_create_cluster_deploy_topology_file.sh
-    ├── 05_06_01_create_newyamlfile_from_yamlfile.sh
-    ├── 05_06_create_newyamlfile_from_yamlfile_text_menu.sh
-    ├── 05_create_cluster_topology_file_text_menu.sh
-    ├── 06_01_install_package_yaml_file_script.sh
-    ├── 06_02_01_tidb_deploy_cluster_user.sh
-    ├── 06_02_tidb_deploy_root.sh
-    ├── 06_tidb_deploy_text_menu.sh
-    ├── 08_01_01_install_mysql_command_client.sh
-    ├── 08_01_02_01_cluseter_instance_user_set_tidb_root_password.sh
-    ├── 08_01_02_set_tidb_root_password.sh
-    ├── 08_01_change_tidb_root_password_menu.sh
-    ├── 09_02_01_cluster_instance_user_initialize_database_variable_parameters.sh
-    ├── 09_02_initialize_database_variable_parameters.sh
-    ├── 09_banben.sh
-    ├── 09_initialize_database_variable_parameters_menu.sh
-    ├── backup.sh
-    ├── edit_cluster_deployment_related_configuration_files_menu.sh
-    ├── get_cpu_mem.sh
-    └── useradd.sh
 
 
 4.TiDB工具部署和使用说明
