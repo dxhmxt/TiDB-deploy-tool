@@ -50,16 +50,16 @@ d.目前工具已测试和验证的操作系统是麒麟和centos系统，其他
 e.目前工具部署测试TiDB版本是v6.1.1版本，建议部署TiDB版本也是v6以上版本；tiup版本应该在v1.6及以上，并行部署参数才能正常支持；   
 f.挂载数据盘不同的客户规划可能不一致，不具有通用性（当前逻辑是xx客户小机下移部署场景使用，如使用请按需调整）；   
 g.生成host和role对应yaml格式文件，仅限已有三个模板常用部署场景需求转换，其他多样性和复杂性部署场景yaml转换不支持；   
-h.当前版本支持的动态计算参数如下：   
- tidb:
-    token-limit: 40
-    performance.max-procs: 6
-    log.file.max-backups: 200
-    tmp-storage-quota: 536870912000
-  tikv:
-    storage.block-cache.capacity: 3G
-    readpool.unified.max-thread-count: 32
-    server.end-point-max-concurrency: 8
+h.当前版本支持的动态计算参数如下：     
+ tidb:  
+    token-limit: 40  
+    performance.max-procs: 6  
+    log.file.max-backups: 200  
+    tmp-storage-quota: 536870912000  
+  tikv:  
+    storage.block-cache.capacity: 3G  
+    readpool.unified.max-thread-count: 32  
+    server.end-point-max-concurrency: 8  
 
 
 部署和执行菜单命令：   
