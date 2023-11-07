@@ -1,56 +1,55 @@
-1.TiDB部署助手工具介绍   
-TiDB部署助手工具用于TiDB for OP离线部署，基于tiup和linux expect在部署节点（Tiup节点）执行文本菜单数字选项完成集群部署工作。   
-TiDB部署助手工具对设置root用户和创建实例用户及其互信设置、初始化系统参数、挂载数据盘、编辑部署yaml文件、部署集群、设置数据库root密码、初始化数据库参数部署工作逻辑进行了封装。   
-优化了重复执行命令、编辑yaml文件工作，可帮助大家提升部署效率，尤其是大规模、多套集群部署场景。    
+1.Introduction to TiDB Deployment Assistant Tool
+The TiDB deployment assistant tool is used for offline deployment of TiDB for OP, and performs text menu numerical options on the deployment node (Tiup node) based on Tiup and Linux Expect to complete cluster deployment work.
+The TiDB deployment assistant tool encapsulates the deployment logic for setting root users and creating instance users, as well as their mutual trust settings, initializing system parameters, mounting data disks, editing and deploying yaml files, deploying clusters, setting database root passwords, and initializing database parameters.
+Optimized the repetitive execution of commands and editing of yaml files, which can help improve deployment efficiency, especially in large-scale and multi cluster deployment scenarios.
 
 
 
-2.TiDB部署助手工具实现功能   
-1.编辑集群部署初始配置文件，对部署集群实例用户、版本等进行变量设置，程序读变量执行相关逻辑部署TiDB集群，支持TiDB社区版和企业部署，部署目标系统支持麒麟和centos系统；   
-提供3个场景集群拓扑规划文件模板及生成host和role对应yaml格式文件展示，可以参考并快速编辑集群拓扑规划文件；   
-2.读取集群拓扑规划文件结合linux expect完成免密设置系统root用户互信、创建集群实例用户和设置互信结果检查，避免手工设置互信；    
-3.读取集群部署初始配置文件和集群拓扑规划文件快速完成整个集群部署系统参数初始化；   
-4.读取集群拓扑规划文件对不同类型节点（tidb节点和非tidb节点）进行数据盘初始化和挂载；   
-5.读取集群部署初始配置文件和集群集群拓扑规划文件，结合linux expect快速完成实例用户创建和互信设置及设置互信后结果检查；   
-6.读取集群拓扑规划文件，实现两个功能：  
-a.快速生成host和role对应yaml格式文件、遍历采集服务器CPU和MEM配置匹配集群拓扑规划文件生成动态参数值，最后生成部署yaml文件；  
-b.快速生成相同架构规划yaml文件；（尤其同一个系统部署多套相关配置和规划的环境）；    
-7.读取集群部署初始配置文件和yaml文件，解压安装介质包进行部署集群；   
-8.安装mysql客户端命令包（mariadb），设置数据库root用户密码；  
-9.编辑和读取数据库变量参数文件，对变量参数进行设置和对设置结果进行检查。  
+2.TiDB Deployment Assistant Tool Implementation Function
+1. Edit the initial configuration file for cluster deployment, set variables for deploying cluster instance users, versions, etc., read variables and execute related logic to deploy TiDB clusters, support TiDB community version and enterprise deployment, and deploy target systems that support Kirin and Centos systems;
+Provide three scenario cluster topology planning file templates and display the corresponding yaml format files for generating hosts and roles, which can be referenced and quickly edited for cluster topology planning files;
+2. Read the cluster topology planning file and combine it with Linux Expect to complete the system root user mutual trust, create cluster instance users, and check the mutual trust results, avoiding manual setting of mutual trust;
+3. Quickly complete the initialization of the entire cluster deployment system parameters by reading the initial configuration file and cluster topology planning file of the cluster deployment;
+4. Read the cluster topology planning file to initialize and mount data disks for different types of nodes (tidb nodes and non tidb nodes);
+5. Read the initial configuration file and cluster topology planning file for cluster deployment, and quickly complete instance user creation and mutual trust settings in conjunction with Linux Expect. Check the results after setting mutual trust;
+6. Read the cluster topology planning file to achieve two functions:
+a. Quickly generate yaml format files corresponding to hosts and roles, traverse and collect server CPU and MEM configurations to match cluster topology planning files, generate dynamic parameter values, and finally generate deployment yaml files;
+b. Quickly generate yaml files for the same architecture plan; (Especially in environments where multiple related configurations and plans are deployed for the same system);
+7. Read the initial configuration file and yaml file for cluster deployment, extract the installation media package, and deploy the cluster;
+8. Install the MySQL client command package (mariadb) and set the database root user password;
+9. Edit and read database variable parameter files, set variable parameters, and check the setting results.
 
-
-3.TiDB部署助手工具目录结构     
+3.TiDB-deploy-tool directory    
 [root@CentOS76_VM ~]# tree  /root/tidbdeploy/   
 tidbdeploy/   
-├── conf                            #root/tidbdeploy/conf 配置文件目录    
-│   ├── iplist.txt                  #集群ip地址列表             1.7 编辑集群ip列表   
-│   ├── a_and_b_iplist.txt          #新老集群ip地址列表         6.5.1 编辑两个集群ip列表   
-│   ├── cluster_base_info.conf      #集群部署初始配置文件       1.1 编辑集群部署初始配置文件   
-│   ├── cluster_global.conf         #yaml全局和服务配置文件     6.1 编辑yaml头部(全局和服务配置)文件    
-│   ├── cluster_plan.conf           #集群拓扑规划文件           1.5 编辑集群拓扑规划文件   
-│   ├── cluster_plan.conf.example1  #集群拓扑规划模板1-最小配置  1.2 集群拓扑规划模板1-最小配置   
-│   ├── cluster_plan.conf.example2  #集群拓扑规划模板2-简单配置  1.3 集群拓扑规划模板2-简单配置   
-│   ├── cluster_plan.conf.example3  #集群拓扑规划模板3-详细配置  1.4 集群拓扑规划模板3-详细配置   
-│   └── tidbinitvar.txt             #初始化数据参数变量命令清单  9.1 编辑数据库变量参数文件   
-├── log                             #root/tidbdeploy/log  日志文件目录                      
-├── package                         #root/tidbdeploy/package 安装介质目录，需要server和toolkit同时下载   
+├── conf                            #root/tidbdeploy/conf    
+│   ├── iplist.txt                     
+│   ├── a_and_b_iplist.txt            
+│   ├── cluster_base_info.conf        
+│   ├── cluster_global.conf             
+│   ├── cluster_plan.conf             
+│   ├── cluster_plan.conf.example1    
+│   ├── cluster_plan.conf.example2    
+│   ├── cluster_plan.conf.example3    
+│   └── tidbinitvar.txt                
+├── log                             #root/tidbdeploy/log                        
+├── package                         #root/tidbdeploy/package    
 │   ├── tidb-community-server-v6.1.1-linux-amd64.tar.gz   
 │   ├── tidb-community-toolkit-v6.1.1-linux-amd64.tar.gz   
-└── scripts                         #root/tidbdeploy/scripts 程序目录    
-    ├── 00_tidb_deploy_text_menu.sh  #总菜单脚本   
+└── scripts                         #root/tidbdeploy/scripts  
+    ├── 00_tidb_deploy_text_menu.sh    
 ...
 
 
-4.TiDB部署助手工具部署和使用注意说明   
-a.TiDB工具需要部署在tiup节点root用户的/root目录下；   
-b.TiDB工具部署所在节点需要配置yum源，并安装linux expect，方便进行免交互操作，集群root用户密码需要一致；   
-c.因合并镜像逻辑需要，安装介质server包和toolkit包需要同时下载；   
-d.目前工具已测试和验证的操作系统是麒麟和centos系统，其他操作系统未进行部署测试和验证；   
-e.目前工具部署测试TiDB版本是v6.1.1版本，建议部署TiDB版本也是v6以上版本；tiup版本应该在v1.6及以上，并行部署参数才能正常支持；   
-f.挂载数据盘不同的客户规划可能不一致，不具有通用性（当前逻辑是xx客户小机下移部署场景使用，如使用请按需调整）；   
-g.生成host和role对应yaml格式文件，仅限已有三个模板常用部署场景需求转换，其他多样性和复杂性部署场景yaml转换不支持；   
-h.当前版本支持的动态计算参数如下：     
+4. TiDB Deployment Assistant Tool Deployment and Usage Notes
+a. The TiDB tool needs to be deployed in the/root directory of the root user of the Tiup node;
+b. The node where the TiDB tool is deployed needs to be configured with yum source and installed with Linux expect for easy interactive operation. The password of the cluster root user needs to be consistent;
+c. Due to the need for merging image logic, both the installation media server package and toolkit package need to be downloaded simultaneously;
+d. At present, the operating systems that have been tested and validated by the tool are the Kirin and Centos systems, while other operating systems have not been deployed, tested or validated;
+e. At present, the TiDB version for tool deployment testing is v6.1.1 version. It is recommended to deploy TiDB version at least v6 version; The Tiup version should be v1.6 or above for parallel deployment parameters to be supported properly;
+f. Different customer plans for mounting data disks may be inconsistent and not universal (the current logic is for xx customer small machine deployment scenarios, please adjust as needed if used);
+g. Generate yaml format files corresponding to host and role, limited to three commonly used deployment scenarios that require conversion. Other diverse and complex deployment scenarios do not support yaml conversion;
+h. The current version supports the following dynamic calculation parameters:
  tidb:  
     token-limit: 40  
     performance.max-procs: 6  
@@ -62,14 +61,14 @@ h.当前版本支持的动态计算参数如下：
     server.end-point-max-concurrency: 8  
 
 
-部署和执行菜单命令：   
-在tiup节点root用户/root/目录下，执行以下部署命令：   
+Install：   
+user root in this directory /root/   
 tar zxf  tidbdeploy-v1.x.x.tar   
-执行sh /root/tidbdeploy/scripts/00_tidb_deploy_text_menu.sh即可执行程序；   
+sh /root/tidbdeploy/scripts/00_tidb_deploy_text_menu.sh；   
 
 
-5.版本说明   
+5.version  
 Current Release Version: 1.0.4   
-Script Editor: 马学涛   
+Script Editor: 马学涛  
 2023-02-21.   
 
